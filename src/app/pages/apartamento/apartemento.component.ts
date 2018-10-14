@@ -37,7 +37,13 @@ export class ApartementoComponent implements OnInit {
     }
   }
   chamadoAbert(chamados: Chamado[]) {
-    let chamado = chamados.find(c => c.status == "2");
+
+    let chamado;
+    if(!this.chamadoAtual)
+      chamado = chamados.find(c => c.status == "2");
+      else
+      chamado =  chamados.find(c => c.id == this.chamadoAtual.id);
+
     if (chamado)
       this.chamadoAtual = chamado
     console.log(this.chamadoAtual)
