@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <form [formGroup]="form" (ngSubmit)="submitForm()">
+              <div class="form-group">
+                <label>Tipo de Usuário</label>
+                <select class="form-control" formControlName="tipo" [ngClass]="{'is-invalid' : submittedForm && f.tipo.errors}">
+                  <option value="0"></option>
+                  <option value="1">Gerente</option>
+                  <option value="2">Recepcionista</option>
+                  <option value="3">Cliente</option>
+                  <option value="4">Camareira</option>
+                  <option value="5">Manutenção</option>
+                  <option value="6">Lavadeira</option>
+                  <option value="7">Enfermeira</option>
+                </select>
+                <div *ngIf="submittedForm && f.tipo.errors" class="invalid-feedback">
+                  <div *ngIf="f.tipo.errors.required">Tipo é requerido.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Nome</label>
+                <input formControlName="nome" [ngClass]="{'is-invalid' : submittedForm && f.nome.errors}" type="text" class="form-control"
+                />
+                <div *ngIf="submittedForm && f.nome.errors" class="invalid-feedback">
+                  <div *ngIf="f.nome.errors.required">Nome é requerido.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>CPF</label>
+                <input formControlName="cpf" [ngClass]="{'is-invalid' : submittedForm && f.cpf.errors}" type="text" class="form-control"
+                />
+                <div *ngIf="submittedForm && f.cpf.errors" class="invalid-feedback">
+                  <div *ngIf="f.cpf.errors.required">CPF é requerido.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>E-mail</label>
+                <input formControlName="email" [ngClass]="{'is-invalid' : submittedForm && f.email.errors}" type="text" class="form-control"
+                />
+                <div *ngIf="submittedForm && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">E-mail é requerido.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Telefone</label>
+                <input mask="(00) 0 0000-0000" [dropSpecialCharacters]="false" formControlName="telefone" [ngClass]="{'is-invalid' : submittedForm && f.telefone.errors}"
+                  type="text" class="form-control" />
+                <div *ngIf="submittedForm && f.telefone.errors" class="invalid-feedback">
+                  <div *ngIf="f.telefone.errors.required">Telefone é requerido.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Senha</label>
+                <input formControlName="senha" [ngClass]="{'is-invalid' : submittedForm && f.senha.errors}" type="password" class="form-control"
+                />
+                <div *ngIf="submittedForm && f.senha.errors" class="invalid-feedback">
+                  <div *ngIf="f.senha.errors.required">Senha é requerida.</div>
+                </div>
+              </div>
+              <div class="button-group">
+                <a [routerLink]="['/user/list-user']" class="btn btn-secondary">Back</a>
+                <input type="submit" value="Register" class="btn btn-success" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

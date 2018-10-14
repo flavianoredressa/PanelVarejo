@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card {{getClasApStatus(ap.status)}} text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center row">
+                            <div class="col-sm-1">
+                                <a [routerLink]="['/relatorio/apartamento/']" href="JavaScript: void(0);">
+                                    <i class="fas fa-home text-white display-6"></i>
+                                </a>
+                            </div>
+                            <div class="m-l-15 m-t-10 col-sm-2">
+                                <h4 class="font-medium m-b-0">{{ap.numero}}</h4>
+                                <h5>{{showApStatus(ap.status)}}</h5>
+                            </div>
+                            <div *ngIf="chamadoAtual" class="m-l-15 m-t-10 col-sm-3">
+                                <h4 class="font-medium m-b-0">{{showChamadosTipos(chamadoAtual.tipo)}}</h4>
+                                <h5>{{showChamadoStatus(chamadoAtual.status)}}</h5>
+                            </div>
+                            <div *ngIf="chamadoAtual" class="m-l-15 m-t-10 col-sm-3">
+                                <circle-progress [percent]="VerificarPorcentagem(chamadoAtual.tarefas)" [titleFontSize]="12"></circle-progress>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="card-title">Chamados de manutenção</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of chamados">
+                            <td>{{showChamadosTipos(c.tipo)}}</td>
+                            <td>{{showChamadoStatus(c.status)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ngb-alert *ngIf="ap.chamados && ap.chamados.lenght == 0" type="warning" [dismissible]="false"><strong>Whoa!</strong>
+                    This is a custom alert.</ngb-alert>
+            </div>
+        </div>
+    </div>
+</div>
