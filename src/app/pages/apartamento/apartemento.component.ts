@@ -18,7 +18,7 @@ export class ApartementoComponent implements OnInit {
   chamadoAtual: Chamado;
   showChamadoStatus = Util.showChamadoStatus;
   showChamadosTipos = Util.showChamadosTipos;
-  chamados:Chamado[];
+  chamados: Chamado[];
   constructor(private apService: ApartmentServiceService, private route: ActivatedRoute, private ChamadoService: ChamadoServiceService) { }
   ngOnInit() {
     this.ap = {
@@ -29,7 +29,7 @@ export class ApartementoComponent implements OnInit {
       this.apService.get(id).subscribe(ap => {
         this.ap = ap;
         this.ChamadoService.getByAp(ap.numero).subscribe(chamados => {
-          this.chamados = chamados; 
+          this.chamados = chamados;
           this.chamadoAbert(chamados);
           console.log(this.chamados)
         })
@@ -37,16 +37,18 @@ export class ApartementoComponent implements OnInit {
     }
   }
   chamadoAbert(chamados: Chamado[]) {
-    this.chamadoAtual = chamados.find(c => c.status == "1");
+    let chamado = chamados.find(c => c.status == "2");
+    if (chamado)
+      this.chamadoAtual = chamado
     console.log(this.chamadoAtual)
   }
-  VerificarPorcentagem(tarefas){
+  VerificarPorcentagem(tarefas) {
     var total = tarefas.length
     var tarefaFeita = 0
     tarefas.forEach(element => {
-      if(element.feito)
-      tarefaFeita++
+      if (element.feito)
+        tarefaFeita++
     });
-    return tarefaFeita/total*100
+    return tarefaFeita / total * 100
   }
 }

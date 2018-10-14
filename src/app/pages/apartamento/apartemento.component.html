@@ -10,22 +10,22 @@
                                     <i class="fas fa-home text-white display-6"></i>
                                 </a>
                             </div>
-                            <div class="m-l-15 m-t-10 col-sm-2">
+                            <div class="m-l-15 m-t-10 col-sm-3">
                                 <h4 class="font-medium m-b-0">{{ap.numero}}</h4>
-                                <h5>{{showApStatus(ap.status)}}</h5>
+                                <h6 >{{showApStatus(ap.status)}}</h6>
                             </div>
-                            <div *ngIf="chamadoAtual" class="m-l-15 m-t-10 col-sm-3">
+                            <div *ngIf="chamadoAtual" class="m-l-15 m-t-10 col-sm-5 text-right">
                                 <h4 class="font-medium m-b-0">{{showChamadosTipos(chamadoAtual.tipo)}}</h4>
-                                <h5>{{showChamadoStatus(chamadoAtual.status)}}</h5>
+                                <h6 style="font-size:13px">{{showChamadoStatus(chamadoAtual.status)}}</h6>
                             </div>
-                            <div *ngIf="chamadoAtual" class="m-l-15 m-t-10 col-sm-3">
+                            <div *ngIf="chamadoAtual" class="m-l-15 m-t-10 col-sm-2 text-right">
                                 <circle-progress [percent]="VerificarPorcentagem(chamadoAtual.tarefas)" [titleFontSize]="12"></circle-progress>
                             </div>
                         </div>
                     </div>
                 </div>
                 <h4 class="card-title">Chamados de manutenção</h4>
-                <table class="table">
+                <table *ngIf="chamados && chamados.length > 0" class="table">
                     <thead>
                         <tr>
                             <th>Tipo</th>
@@ -39,8 +39,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <ngb-alert *ngIf="ap.chamados && ap.chamados.lenght == 0" type="warning" [dismissible]="false"><strong>Whoa!</strong>
-                    This is a custom alert.</ngb-alert>
+                <ngb-alert *ngIf="chamados && chamados.length == 0" type="warning" [dismissible]="false">
+                    Nehhum chamado de manutenção foi solicitado.</ngb-alert>
             </div>
         </div>
     </div>

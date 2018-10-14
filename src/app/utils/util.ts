@@ -50,6 +50,7 @@ export class Util{
          } 
     }
     static showChamadoStatus(st){
+        st = String(st);
         switch(st) { 
             case '1': { 
                return "Aberto"
@@ -66,6 +67,7 @@ export class Util{
          } 
     }
     static showChamadosTipos(st){
+        st  = Number(st);
         switch(st) { 
             case 1: { 
                return "Gerente"
